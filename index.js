@@ -1,23 +1,19 @@
-import express from "express";
-import dotenv from "dotenv";
-import userRouter from "./src/routes/user.route.js";
-
-dotenv.config();
+import express from 'express';
+import userRoutes from './src/routes/user.route.js';
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = 3000;
 
 app.use(express.json());
 
-app.use("/api/users", userRouter);
-
-app.get("/", (req, res) => {
-  res.json({ message: "API funcionando correctamente", status: "ok" });
+app.get('/', (req, res) => {
+  res.json({ message: 'API de pruebas funcionando' });
 });
 
-app.get("/ping", (req, res) => {
-  res.json({ pong: true, timestamp: new Date().toISOString() });
-});
+// Usar las rutas de usuario
+app.use('/api/users', userRoutes);
+
+
 
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);

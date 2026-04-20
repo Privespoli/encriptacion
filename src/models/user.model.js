@@ -1,17 +1,19 @@
-import mongoose from 'mongoose';
 import { dbConfig } from '../config/db.config.js';
 
-const userSchema = new mongoose.Schema({
-  username: String,
-  email: String,
-  password: String,
-});
+export default async function userModel() {
+  const mongoose = await dbConfig();
+  if (!mongoose) return { error: 'DB connection failed' };
 
-const userModel = mongoose.model('users', userSchema);
+  const userSchema = new mongoose.Schema({
+    nombre: { type: String, required: true },
+    apellido: { type: String, required: true },
+    email: { type: String, required: true, unique: true },
+    password: { type: String, required: true }
+  });
 
-export const findAllUsers = async () => {
-  await dbConfig();
-  return { message: 'userModel works!', db: 'connected' };
-};
+  userSchema.index({ email: 1 }, { unique: true });
 
-export default userModel;
+  const model = mongoose.models.user || mongoose.model('user', userSchema, 'users');
+  await model.init();
+  return model;
+}

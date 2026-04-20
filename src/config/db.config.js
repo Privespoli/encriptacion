@@ -3,11 +3,13 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-export const dbConfig = async () => {
+export async function dbConfig() {
   try {
     await mongoose.connect(process.env.MONGO_URI);
-    console.log('MongoDB connection successful');
+    console.log('Conexión a MongoDB exitosa');
+    return mongoose;
   } catch (error) {
-    console.log('MongoDB connection failed: ', error);
+    console.log('Error en conexión a MongoDB:', error);
+    return null;
   }
-};
+}
