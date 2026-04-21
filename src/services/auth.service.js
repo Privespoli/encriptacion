@@ -4,7 +4,6 @@ import bcrypt from 'bcrypt'
 const saltRounds = 10
 
 export async function registerService(userData) {
-    console.log(userData)
     try {
         const hashedpass = await bcrypt.hash(userData.password, saltRounds);
         const user = await userModel();
@@ -28,4 +27,12 @@ export async function registerService(userData) {
             message:"usuario NO guardado"
         }
     }
+}
+
+export async function loginService(userData) {
+    console.log("userData: ",userData)
+    return {
+        status: 200,
+        message: 'login service'
+    };
 }

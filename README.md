@@ -34,7 +34,12 @@ en el archivo db.config.js debes importar las librerias mongoose y dotenv, dentr
 
 dado que dbconfig en el usermodel viene en representacion de la conexion a mongo y lalibreria mongoose, usalo para crearme un schema, el cual debe tener nombre, apellido, correo y password, aun no me hagas mas nada, solo eso que te pido, no es necesario que crees una propiedad para el ID ya que la DB lo genera automaticamente
 recuerda que por eficiencia no debes volver a llamar a la libreria mongoose, se supone que dbconfig ya tiene esa importacion y debes aprovechar dicha conexion
-dime que entendiste y que plan de ejecucion tienes al respecto?
+dime que entendiste y que plan des ejecucion tienes al respecto?
 la funcion dbconfig ya tiene la conexion con mongoose, da mongoose como retorno de dicha funcion y usalo en el modelo
 
 ahora creeame el modelo, recuerda colocar una validacion de compilacion y que ademas la coleccion se llama "users" recuerda no colocarle mayusculas y recuerda que el modelo durante su declaracion debe colocarse un 3er parametro con el nombre exacto de la coleccion para eviar que mongo genere otra tabla con un nombre distinto
+
+
+quiero que me hagas una funcion en el auth.controller.js que sea asincrona y se llame loginController, la cual voy a importar en el user.route.js para ser usado en la api de login, es solo una funcion de prueba asi que no quiero que me hagas nad aademas de eso
+
+creame en el auth.service.js una funcion asincrona que se llame loginService, para ser importado y usado por el loginController
