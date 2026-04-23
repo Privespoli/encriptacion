@@ -14,7 +14,10 @@ app.get('/', (req, res) => {
 app.use('/api/users', userRoutes);
 
 
+if (!process.env.JEST_WORKER_ID) {
+  app.listen(PORT, () => {
+    console.log(`Servidor corriendo en http://localhost:${PORT}`);
+  });
+}
 
-app.listen(PORT, () => {
-  console.log(`Servidor corriendo en http://localhost:${PORT}`);
-});
+export default app;
